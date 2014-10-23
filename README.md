@@ -4,7 +4,10 @@ bikingjs
 A mini app that scrapes single track biking trail conditions for the Twin Cities area, made with javascript.
 
 
-<a ng-click="hello()">
+<div onclick="console.log('hello')">
 click me
-</a>
+</div>
 
+<button onclick="console.log('world')">
+Click me
+</button>
