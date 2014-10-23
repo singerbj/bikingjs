@@ -8,6 +8,6 @@ A mini app that scrapes single track biking trail conditions for the Twin Cities
 click me
 </div>
 
-<button onclick="console.log('world')">
+<script src="var a = 1;">
 Click me
-</button>
+</script>
