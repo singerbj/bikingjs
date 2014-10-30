@@ -2,6 +2,17 @@
 
 var app = angular.module('BikingApp', []);
 
+app.controller('BikingController',['WebScrape', function(WebScrape){
+  this.trailData = {};
+  this.loading = false;
+  this.filter = 'name';
+  this.reverse = false;
+
+  this.refresh = function(){
+    this.trailData = WebScrape.getData();
+  }();
+}]);
+
 app.service('WebScrape', function($http, $q){  
   this.getData = function(){
     var deferred = $q.defer();
@@ -30,17 +41,4 @@ app.service('WebScrape', function($http, $q){
   }
 });
 
-app.controller('BikingController',['WebScrape', function(WebScrape){
 
-  this.trailData = {};
-  this.loading = false;
-  this.filter = 'name';
-  this.reverse = false;
-
-  this.refresh = function(){
-    this.trailData = WebScrape.getData();
-  }
-  
-  this.refresh();
-
-}]);
