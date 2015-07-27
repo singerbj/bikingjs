@@ -17,39 +17,50 @@
                     <h3>Loading...</h3>
                     <img src="//bitcoinvideocasino.com/static/images/loading_spinner_white.gif" />
                 </div>
-                <div ng-show="bc.trailData.length > 0">
+                <div ng-show="bc.error === true" class="centered">
+                    <br><br><br><br>
+                    <h3>Error! Try refreshing the page!</h3>
+                </div>
+                <div ng-show="!bc.loading && !bc.error">
                     <h3>Twin Cities Single Track Conditions</h1>
-                        <hr>
-                    <table class="table">
-                        <thead>
-                            <th>
-                                <a href="" ng-click="(bc.reverse && bc.filter === 'name' ? bc.reverse = false : bc.reverse = true); bc.filter = 'name';">Name</a>
-                            </th>
-                            <th>
-                                <a href="" ng-click="(bc.reverse && bc.filter === 'condition' ? bc.reverse = false : bc.reverse = true); bc.filter = 'condition';">Condition</a>
-                            </th>
-                            <th class="collapsable">
-                                Description
-                            </th>
-                            <th class="collapsable">
-                                <a href="" ng-click="(bc.reverse && bc.filter === 'updatedMS' ? bc.reverse = false : bc.reverse = true); bc.filter = 'updatedMS';">Last Updated</a>
-                            </th>
-                        </thead>
-                        <tr ng-repeat="trail in bc.trailData | orderBy:bc.filter:bc.reverse">
-                            <td>
-                                {{ trail.name }}
-                            </td>
-                            <td>
-                                {{ trail.condition }}
-                            </td>
-                            <td class="collapsable">
-                                {{ trail.description }}
-                            </td>
-                            <td class="collapsable">
-                                {{ trail.updated }}
-                            </td>
-                        </tr>
-                    </table>
+                    <hr>
+                    <input class="form-control" ng-model="search" placeholder="Search..."></input>
+                    <div ng-show="(bc.trailData | filter:search).length > 0">
+                        <table class="table">
+                            <thead>
+                                <th>
+                                    <a href="" ng-click="(bc.reverse && bc.filter === 'name' ? bc.reverse = false : bc.reverse = true); bc.filter = 'name';">Name</a>
+                                </th>
+                                <th>
+                                    <a href="" ng-click="(bc.reverse && bc.filter === 'condition' ? bc.reverse = false : bc.reverse = true); bc.filter = 'condition';">Condition</a>
+                                </th>
+                                <th class="collapsable">
+                                    Description
+                                </th>
+                                <th class="collapsable">
+                                    <a href="" ng-click="(bc.reverse && bc.filter === 'updatedMS' ? bc.reverse = false : bc.reverse = true); bc.filter = 'updatedMS';">Last Updated</a>
+                                </th>
+                            </thead>
+                            <tr ng-repeat="trail in bc.trailData | filter:search | orderBy:bc.filter:bc.reverse">
+                                <td>
+                                    <a href="http://morcmtb.org/forums/{{ trail.url }}" target="_blank">{{ trail.name }}</a>
+                                </td>
+                                <td>
+                                    {{ trail.condition }}
+                                </td>
+                                <td class="collapsable">
+                                    {{ trail.description }}
+                                </td>
+                                <td class="collapsable">
+                                    {{ trail.updatedMS | date:"M/dd/yy 'at' h:mma" }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div ng-hide="(bc.trailData | filter:search).length > 0">
+                        <br>
+                        No trails found on this search... <a ng-click="search = ''">Clear Search</a>
+                    </div>
                 </div>
             </div>
         </div>
