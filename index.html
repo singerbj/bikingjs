@@ -1,61 +1,67 @@
 <html ng-app="BikingApp">
-  <head>
+
+<head>
     <title>Hello World!</title>
     <link rel="stylesheet" href="css/bs.css" type="text/css">
     <link rel="stylesheet" href="css/bst.css" type="text/css">
     <link rel="stylesheet" href="css/mycss.css" type="text/css">
-  </head>
-  <body ng-controller="BikingController as bc">
-    <div class="row">
-      <div class="col-md-12">
-      
-      </div>
-    </div>    
-    <div class="row">
-      <div class="col-md-12">
-        <h3 ng-hide="bc.trailData.array.length > 0">Loading...</h3>
-        <div ng-show="bc.trailData.array.length > 0">
-          <a href="" ng-click="bc.filter = 'name'; bc.reverse = false;">Sort by Name</a>&nbsp;|
-          <a href="" ng-click="bc.filter = 'condition'; bc.reverse = false;">Sort by Condition</a>&nbsp;|
-          <a href="" ng-click="bc.filter = 'updated'; bc.reverse = false;">Sort by Updated</a>&nbsp;|
-          <table class="table" >
-            <tr>
-              <td>
-                Name
-              </td>
-              <td>
-                Condition
-              </td>
-              <td>
-                Description
-              </td>
-              <td>
-                Updated
-              </td>
-            </tr>
-            <tr ng-repeat="trail in bc.trailData.array | orderBy:bc.filter:bc.reverse">
-              <td>
-                {{ trail.name }}
-              </td>
-              <td>
-                {{ trail.condition }}
-              </td>
-              <td>
-                {{ trail.description }}
-              </td>
-              <td>
-                {{ trail.updated }}
-              </td>
-            </tr> 
-          </table>
-        </div>
-      </div>
-    </div>    
-  </body>
+</head>
 
-  <script src="js/jquery-2.1.1.js" type="text/javascript"></script>
-  <script src="js/angular.js" type="text/javascript"></script>
-  <script src="js/ui-bootstrap-tpls-0.11.0.js" type="text/javascript"></script>
-  <script src="js/bootstrap.js" type="text/javascript"></script>
-  <script src="js/app.js" type="text/javascript"></script>
+<body ng-controller="BikingController as bc" ng-cloak>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div ng-show="bc.loading === true" class="centered">
+                    <br><br><br><br>
+                    <h3>Loading...</h3>
+                    <img src="//bitcoinvideocasino.com/static/images/loading_spinner_white.gif" />
+                </div>
+                <div ng-show="bc.trailData.length > 0">
+                    <table class="table">
+                        <thead>
+                            <th>
+                                <a href="" ng-click="bc.filter = 'name'; (bc.reverse ? bc.reverse = false : bc.reverse = true);">Name</a>
+                            </th>
+                            <th>
+                                <a href="" ng-click="bc.filter = 'condition'; (bc.reverse ? bc.reverse = false : bc.reverse = true);">Condition</a>
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                <a href="" ng-click="bc.filter = 'updatedMS'; (bc.reverse ? bc.reverse = false : bc.reverse = true);">Last Updated</a>
+                            </th>
+                        </thead>
+                        <tr ng-repeat="trail in bc.trailData | orderBy:bc.filter:bc.reverse">
+                            <td>
+                                {{ trail.name }}
+                            </td>
+                            <td>
+                                {{ trail.condition }}
+                            </td>
+                            <td>
+                                {{ trail.description }}
+                            </td>
+                            <td>
+                                {{ trail.updated }}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="js/jquery-2.1.1.js" type="text/javascript"></script>
+<script src="js/angular.js" type="text/javascript"></script>
+<script src="js/ui-bootstrap-tpls-0.11.0.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/app.js" type="text/javascript"></script>
+
 </html>
