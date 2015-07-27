@@ -1,7 +1,7 @@
 <html ng-app="BikingApp">
 
 <head>
-    <title>Hello World!</title>
+    <title>Twin Cities Single Track Conditions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bs.css" type="text/css">
     <link rel="stylesheet" href="css/bst.css" type="text/css">
@@ -18,19 +18,21 @@
                     <img src="//bitcoinvideocasino.com/static/images/loading_spinner_white.gif" />
                 </div>
                 <div ng-show="bc.trailData.length > 0">
+                    <h3>Twin Cities Single Track Conditions</h1>
+                        <hr>
                     <table class="table">
                         <thead>
                             <th>
-                                <a href="" ng-click="bc.filter = 'name'; (bc.reverse ? bc.reverse = false : bc.reverse = true);">Name</a>
+                                <a href="" ng-click="(bc.reverse && bc.filter === 'name' ? bc.reverse = false : bc.reverse = true); bc.filter = 'name';">Name</a>
                             </th>
                             <th>
-                                <a href="" ng-click="bc.filter = 'condition'; (bc.reverse ? bc.reverse = false : bc.reverse = true);">Condition</a>
+                                <a href="" ng-click="(bc.reverse && bc.filter === 'condition' ? bc.reverse = false : bc.reverse = true); bc.filter = 'condition';">Condition</a>
                             </th>
-                            <th>
+                            <th class="collapsable">
                                 Description
                             </th>
-                            <th>
-                                <a href="" ng-click="bc.filter = 'updatedMS'; (bc.reverse ? bc.reverse = false : bc.reverse = true);">Last Updated</a>
+                            <th class="collapsable">
+                                <a href="" ng-click="(bc.reverse && bc.filter === 'updatedMS' ? bc.reverse = false : bc.reverse = true); bc.filter = 'updatedMS';">Last Updated</a>
                             </th>
                         </thead>
                         <tr ng-repeat="trail in bc.trailData | orderBy:bc.filter:bc.reverse">
@@ -40,10 +42,10 @@
                             <td>
                                 {{ trail.condition }}
                             </td>
-                            <td>
+                            <td class="collapsable">
                                 {{ trail.description }}
                             </td>
-                            <td>
+                            <td class="collapsable">
                                 {{ trail.updated }}
                             </td>
                         </tr>
