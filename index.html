@@ -37,7 +37,7 @@
                                 <th class="collapsable">
                                     Description
                                 </th>
-                                <th class="collapsable">
+                                <th >
                                     <a href="" ng-click="(bc.reverse && bc.filter === 'updatedMS' ? bc.reverse = false : bc.reverse = true); bc.filter = 'updatedMS';">Last Updated</a>
                                 </th>
                             </thead>
@@ -51,7 +51,7 @@
                                 <td class="collapsable">
                                     {{ trail.description }}
                                 </td>
-                                <td class="collapsable">
+                                <td >
                                     {{ trail.updatedMS | date:"M/dd/yy 'at' h:mma" }}
                                 </td>
                             </tr>
